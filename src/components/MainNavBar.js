@@ -5,26 +5,29 @@ function MainNavBar() {
 
     return (
         <header>
-            <div className="rpgui-container framed">
-                <nav className>
-                    <ul>
-                        <li>
-                            <p>TDG</p>
-                        </li>
+            <div className="rpgui-container framed" style={{width: "75%", margin: "0 auto"}}>
+                <div className="rpgui-container framed-golden-2" style={{width: "50%", margin: "0 auto"}}>
 
-                        <li>
-                            <p>Total Score: </p>
-                        </li>
+                    <nav className>
+                        <ul align = "center" style={{listStyle: "none", width: "100%"}}>
+                            <li style={{display: "inline-block"}}>
+                                <p>TDG</p>
+                            </li>
 
-                        <li>
-                            <Link to='/'>Menu</Link>
-                        </li>
+                            <li style={{display: "inline-block"}}>
+                                <p>Total Score: </p>
+                            </li>
 
-                        <li>
-                            <button onClick={ getNetworkPermission}>Connect Wallet</button>
-                        </li>
-                    </ul>
-                </nav>
+                            <li style={{display: "inline-block"}}>
+                                <Link to='/'>Menu</Link>
+                            </li>
+
+                            <li style={{display: "inline-block"}}>
+                                <button onClick={ getNetworkPermission}>Connect Wallet</button>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </header>
     )
