@@ -6,9 +6,16 @@ function MainNavBar() {
     return (
         <header>
             <div className="rpgui-container framed">
-                <p>TDG</p>
                 <nav className>
                     <ul>
+                        <li>
+                            <p>TDG</p>
+                        </li>
+
+                        <li>
+                            <p>Total Score: </p>
+                        </li>
+
                         <li>
                             <Link to='/'>Menu</Link>
                         </li>
