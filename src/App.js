@@ -1,9 +1,9 @@
-import GameState from "./components/GameState.js";
+import GameState from "./components/GameState";
 
 function App() {
   return (
     <div className="App">
-      <GameState />
+      <GameState/>
     </div>
   );
 }
