@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
-function MenuState() {
+
+
+function MenuState(props) {
+    const navigate = useNavigate();
 
     function playHandler() {
 
@@ -11,6 +15,7 @@ function MenuState() {
     }
 
     function helpHandler() {
+        navigate('help')
     }
 
     return  (
