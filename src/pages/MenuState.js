@@ -19,12 +19,13 @@ function MenuState(props) {
     }
 
     return  (
-    <div>
+    <div align="center">
         <h1>Tez Dex Gamification</h1>
-        <button onClick={playHandler}>Play</button>
-        <button onClick={statsHandler}>Stats</button>
-        <button onClick={helpHandler}>Help</button>
-
+        <div className="rpgui-container framed" style={{width: 300, display: "grid"}}>
+            <button onClick={playHandler}>Play</button>
+            <button onClick={statsHandler}>Stats</button>
+            <button onClick={helpHandler}>Help</button>
+        </div>
     </div>
     )
 }

@@ -5,7 +5,6 @@ function MainNavBar() {
 
     return (
         <header>
-
             <div className="rpgui-container framed">
                 <p>TDG</p>
                 <nav className>
