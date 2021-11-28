@@ -18,6 +18,7 @@ const wallet = new BeaconWallet({
   colorMode: 'dark'
 });
 
+Tezos.setWalletProvider({ wallet });
 Tezos.setProvider({ wallet });
 
 const network = {
@@ -33,6 +34,7 @@ const disconnect = () => {
   wallet.disconnect();
 };
 
+
 const getActiveAccount = async () => {
   return await wallet.client.getActiveAccount();
 };
@@ -47,6 +49,7 @@ const getNetworkPermission = async () => {
 
   return activeAccount;
 }
+
 
 const buy = async(recipients, subject, body) => {
   getNetworkPermission();
