@@ -3,9 +3,9 @@ function App() {
   return (
     <div className="App">
       <h1>Tez Dex Gamification</h1>
-      <p>Play</p>
-      <p>Stats</p>
-      <p>Help</p>
+      <button>Play</button>
+      <button>Stats</button>
+      <button>Help</button>
     </div>
   );
 }
