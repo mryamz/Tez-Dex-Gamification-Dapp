@@ -1,11 +1,9 @@
+import GameState from "./components/GameState.js";
 
 function App() {
   return (
     <div className="App">
-      <h1>Tez Dex Gamification</h1>
-      <button>Play</button>
-      <button>Stats</button>
-      <button>Help</button>
+      <GameState />
     </div>
   );
 }
