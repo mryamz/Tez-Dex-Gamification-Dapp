@@ -6,7 +6,7 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div className="rpgui-content">
       <MainNavBar/>
       <GameState/>
     </div>

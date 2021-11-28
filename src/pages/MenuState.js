@@ -24,6 +24,7 @@ function MenuState(props) {
         <button onClick={playHandler}>Play</button>
         <button onClick={statsHandler}>Stats</button>
         <button onClick={helpHandler}>Help</button>
+
     </div>
     )
 }
