@@ -4,7 +4,7 @@ import MenuState from "../pages/MenuState.js";
 
 function GameState() {
     return (
-    <div className="rpgui-container framed" style={{width: '70%', height: '84%', margin: "0 auto"}}>
+    <div className="rpgui-container framed" style={{width: '70%', height: '84%', overflow: "scroll", margin: "0 auto"}}>
         <Routes>
 
             <Route path='/' element={<MenuState/>}/>

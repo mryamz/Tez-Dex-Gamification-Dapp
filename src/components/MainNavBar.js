@@ -5,7 +5,7 @@ function MainNavBar() {
 
     return (
         <header>
-            <div className="rpgui-container framed" style={{width: "75%", margin: "0 auto"}}>
+            <div className="rpgui-container framed" style={{width: "80%", margin: "0 auto"}}>
                 <div className="rpgui-container framed-golden-2" style={{width: "50%", margin: "0 auto"}}>
 
                     <nav className>
