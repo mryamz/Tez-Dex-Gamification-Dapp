@@ -2,7 +2,7 @@ import { BeaconWallet } from '@taquito/beacon-wallet';
 import { TezosToolkit } from '@taquito/taquito';
 import { tzip12 } from '@taquito/tzip12';
 import axios from 'axios';
-import { REACT_APP_TEZOS_RPC_URL } from './constants';
+import { PREFERRED_NETWORK_TYPE, REACT_APP_TEZOS_RPC_URL } from './constants';
 
 const Tzip12Module = require('@taquito/tzip12').Tzip12Module;
 const Tzip16Module = require('@taquito/tzip16').Tzip16Module;
@@ -12,18 +12,16 @@ const Tezos = new TezosToolkit(REACT_APP_TEZOS_RPC_URL);
 Tezos.addExtension(new Tzip12Module());
 Tezos.addExtension(new Tzip16Module());
 
-const contractAddress = process.env.VUE_APP_TEDDY_MESSENGER;
-
 const wallet = new BeaconWallet({
   name: "TezDex Gameification",
-  preferredNetwork: 'hangzhounet',
+  preferredNetwork: PREFERRED_NETWORK_TYPE,
   colorMode: 'dark'
 });
 
 Tezos.setProvider({ wallet });
 
 const network = {
-  type: 'hangzhounet',
+  type: PREFERRED_NETWORK_TYPE,
   rpcUrl: REACT_APP_TEZOS_RPC_URL
 };
 
