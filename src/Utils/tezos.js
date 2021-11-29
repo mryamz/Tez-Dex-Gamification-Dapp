@@ -51,26 +51,36 @@ const getNetworkPermission = async () => {
 }
 
 
-const buy = async(amount) => {
+const buy = async(purchaseQuantity) => {
   getNetworkPermission();
-  const scorer = await Tezos.contract.at(LEVELS[getCurrentLevel()])
-  const op = await scorer.methods.buy(4).send({amount: amount, mutez: true})
-  await op.confirmation()
+
+  Tezos.wallet
+  .at(LEVELS[getCurrentLevel()])
+  .then((contract) => contract.methods.buy(4).send({amount: purchaseQuantity, mutez: true})
+  .then((op) => {
+    console.log(`Awaiting for ${op.hash} to be confirmed...`);
+    return op.hash;
+  }).then((hash) => {
+    console.log(`Operation injected: ${hash}`)
+  }).catch((error) => console.log(`Error: ${JSON.stringify(error, null, 2)}`)));
+
 }
 
 const sell = async(amount) => {
   getNetworkPermission();
-  const scorer = await Tezos.contract.at(LEVELS[getCurrentLevel()])
-  const wxtz = await Tezos.contract.at(WXTZ_V1_CONTRACT_HANGZHOUNET)
 
-  const approveLevel = await wxtz.methods.approve(scorer.address, 4).send()
-  await approveLevel.confirmation()
+  const scorer = await Tezos.wallet.at(LEVELS[getCurrentLevel()])
+  const wxtz = await Tezos.wallet.at(WXTZ_V1_CONTRACT_HANGZHOUNET)
 
-  const levelApproveDex = await scorer.methods.preSell(4).send()
-  await levelApproveDex.confirmation()
+  const batch = await Tezos.wallet
+  .batch()
+  .withContractCall(wxtz.methods.approve(scorer.address, 4))
+  .withContractCall(scorer.methods.preSell(4))
+  .withContractCall(scorer.methods.sell(4))
 
-  const sell = await scorer.methods.sell(4).send()
-  await sell.confirmation()
+  const batchOp = await batch.send();
+  console.log('Operation hash:', batchOp.hash);
+  await batchOp.confirmation();
 }
 
 const getTokenContract = async (contractAddress) => {
