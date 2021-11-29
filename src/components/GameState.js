@@ -1,6 +1,8 @@
 import { Route, Router, Routes } from "react-router";
 import HelpState from "../pages/HelpState.js";
+import LevelSelectState from "../pages/LevelSelectState.js";
 import MenuState from "../pages/MenuState.js";
+import PlayState from "../pages/PlayState.js";
 
 function GameState() {
     return (
@@ -9,6 +11,8 @@ function GameState() {
 
             <Route path='/' element={<MenuState/>}/>
             <Route path='/help' element={<HelpState/>}/>
+            <Route path='/play' element={<PlayState/>}/>
+            <Route path='/level-select' element={<LevelSelectState/>}/>
 
         </Routes>
 

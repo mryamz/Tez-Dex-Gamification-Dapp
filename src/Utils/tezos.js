@@ -2,7 +2,7 @@ import { BeaconWallet } from '@taquito/beacon-wallet';
 import { TezosToolkit } from '@taquito/taquito';
 import { tzip12 } from '@taquito/tzip12';
 import axios from 'axios';
-import { PREFERRED_NETWORK_TYPE, REACT_APP_TEZOS_RPC_URL } from './constants';
+import {  getCurrentLevel, LEVELS, PREFERRED_NETWORK_TYPE, REACT_APP_TEZOS_RPC_URL, SCORER_V1_CONTRACT_HANGZHOUNET, WXTZ_V1_CONTRACT_HANGZHOUNET } from './globals';
 
 const Tzip12Module = require('@taquito/tzip12').Tzip12Module;
 const Tzip16Module = require('@taquito/tzip16').Tzip16Module;
@@ -51,8 +51,26 @@ const getNetworkPermission = async () => {
 }
 
 
-const buy = async(recipients, subject, body) => {
+const buy = async(amount) => {
   getNetworkPermission();
+  const scorer = await Tezos.contract.at(LEVELS[getCurrentLevel()])
+  const op = await scorer.methods.buy(4).send({amount: amount, mutez: true})
+  await op.confirmation()
+}
+
+const sell = async(amount) => {
+  getNetworkPermission();
+  const scorer = await Tezos.contract.at(LEVELS[getCurrentLevel()])
+  const wxtz = await Tezos.contract.at(WXTZ_V1_CONTRACT_HANGZHOUNET)
+
+  const approveLevel = await wxtz.methods.approve(scorer.address, 4).send()
+  await approveLevel.confirmation()
+
+  const levelApproveDex = await scorer.methods.preSell(4).send()
+  await levelApproveDex.confirmation()
+
+  const sell = await scorer.methods.sell(4).send()
+  await sell.confirmation()
 }
 
 const getTokenContract = async (contractAddress) => {
@@ -67,4 +85,6 @@ export {
   getActiveAccount,
   getNetworkPermission,
   getTokenContract,
+  buy,
+  sell
 };

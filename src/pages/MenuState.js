@@ -7,11 +7,11 @@ function MenuState(props) {
     const navigate = useNavigate();
 
     function playHandler() {
-
+        navigate('level-select')
     }
 
     function statsHandler() {
-
+        navigate('stats')
     }
 
     function helpHandler() {
